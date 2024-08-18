@@ -41,7 +41,7 @@ const userDetails = (eachUser)=>{
 app.get('/',async(request,response)=>{
     const {location=''}=request.query
     const getQuery = `
-    SELECT * FROM users WHERE location="${location}";`
+    SELECT * FROM users WHERE location LIKE "%${location}%";`
     const usersArray = await db.all(getQuery)
     response.send(usersArray.map(eachUser=>userDetails(eachUser)))
 })
